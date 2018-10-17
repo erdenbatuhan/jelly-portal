@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Jelly : MonoBehaviour {
+
     [SerializeField] Vector3 vector;
-     Rigidbody myRigidbody;
-    private bool isPressedSpace = false;
+    Rigidbody2D myRigidbody;
+    private bool isThrowable = false;
 
     private void Start() {
-        myRigidbody = GetComponent<Rigidbody>();
-        myRigidbody.useGravity = false;
+        myRigidbody = GetComponent<Rigidbody2D>();
+        myRigidbody.bodyType = RigidbodyType2D.Kinematic;
     }
 
     private void Update() {
@@ -17,10 +18,18 @@ public class Jelly : MonoBehaviour {
     }
 
     private void throwJelly() {
-        if (Input.GetKeyDown(KeyCode.Space) && isPressedSpace == false) {
-            myRigidbody.useGravity = true;
-            myRigidbody.velocity = vector;
-            isPressedSpace = true;
+        if (Input.GetKeyDown(KeyCode.Space) && IsThrowable == false) {
+            myRigidbody.bodyType = RigidbodyType2D.Dynamic;
+            myRigidbody.velocity = vector;    
+            IsThrowable = true;
         }
     }
+
+    public bool IsThrowable {
+        get {
+            return isThrowable;
+        } set {
+            isThrowable = value;
+        }
+    } 
 }

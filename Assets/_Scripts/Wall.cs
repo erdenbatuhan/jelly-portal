@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour {
 
-    private void OnCollisionEnter(Collision collision) {
+    private void OnCollisionEnter2D(Collision2D collision) {
         GameObject collider = collision.gameObject;
+        var jellyScript = collider.GetComponent<Jelly>();
 
-        if (collider.GetComponent<Jelly>() != null)
-            collider.GetComponent<Rigidbody>().isKinematic = true;
-
-        collider.GetComponent<Rigidbody>().isKinematic = false;
-    }
+        if (jellyScript != null) {
+            collider.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            jellyScript.IsThrowable = false;
+        }
+    } 
 }
