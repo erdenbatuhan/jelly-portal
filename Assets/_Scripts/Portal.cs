@@ -1,31 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Extensions;
 
 public class Portal : MonoBehaviour {
     [SerializeField] Jelly jelly;
     [SerializeField] Portal destination;
     Transform jellyTransform;
     Transform destinationTransform;
+    Rigidbody2D jellyRigidbody;
 
     public void Start() { 
         jellyTransform = jelly.GetComponent<Transform>();
+        destinationTransform = destination.GetComponent<Transform>();
+        jellyRigidbody = jelly.GetComponent<Rigidbody2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.GetComponent<Jelly>() != null)
         {
-            destinationTransform = destination.GetComponent<Transform>();
-            jellyTransform.position = destinationTransform.position;
-            jellyTransform.eulerAngles = new Vector3(jellyTransform.eulerAngles.x, jellyTransform.eulerAngles.y, destinationTransform.eulerAngles.z);
-            Vector3 velocityVector = jelly.GetComponent<Rigidbody2D>().velocity;
-            /*float velX = velocityVector.x;
-            float velY = -velocityVector.y;
+            Vector2 enteringVelocity = jellyRigidbody.velocity;
 
-            jelly.GetComponent<Rigidbody2D>().velocity = new Vector3(velX, velY, 0);
- */
+            jellyTransform.position = destinationTransform.position;   // teleport the jelly
+            float beta = transform.eulerAngles.z + destination.transform.eulerAngles.z;     // rotate the velocity vector beta degrees
+
+            jelly.GetComponent<Rigidbody2D>().velocity = Vector2Extension.Rotate(enteringVelocity, beta);
         }
     }
-
 }

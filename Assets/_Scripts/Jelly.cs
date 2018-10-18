@@ -24,7 +24,7 @@ public class Jelly : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
             throwJelly();
         else if (Input.GetKeyDown(KeyCode.UpArrow))
-            myRigidbody.velocity = new Vector2(velocityInX, velocityInY);
+            myRigidbody.velocity = velocityVector;
     }
 
     private void throwJelly() {
