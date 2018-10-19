@@ -1,12 +1,15 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Jelly : MonoBehaviour {
 
-    [SerializeField] Vector3 vector;
+    /* Global Variables */
+    [SerializeField] Vector2 velocityVector;
+    private bool isThrowable = true;
+
+    /* Cached Variables */
     Rigidbody2D myRigidbody;
-    private bool isThrowable = false;
 
     private void Start() {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -14,15 +17,15 @@ public class Jelly : MonoBehaviour {
     }
 
     private void Update() {
-        throwJelly();
+        if (isThrowable && Input.GetKeyDown(KeyCode.Space))
+            throwJelly();
     }
 
     private void throwJelly() {
-        if (Input.GetKeyDown(KeyCode.Space) && IsThrowable == false) {
-            myRigidbody.bodyType = RigidbodyType2D.Dynamic;
-            myRigidbody.velocity = vector;    
-            IsThrowable = true;
-        }
+        myRigidbody.bodyType = RigidbodyType2D.Dynamic;
+        myRigidbody.velocity = velocityVector;  
+
+        isThrowable = false;
     }
 
     public bool IsThrowable {

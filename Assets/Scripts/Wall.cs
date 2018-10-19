@@ -6,11 +6,11 @@ public class Wall : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision) {
         GameObject collider = collision.gameObject;
-        var jellyScript = collider.GetComponent<Jelly>();
+        Jelly jelly = collider.GetComponent<Jelly>();
 
-        if (jellyScript != null) {
+        if (jelly != null) {
             collider.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            jellyScript.IsThrowable = false;
+            jelly.IsThrowable = true;
         }
     } 
 }
