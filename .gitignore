@@ -35,5 +35,6 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
-# OS X Generated Files
+# OS Generated Files
 .DS_Store
+multiInst
