@@ -8,9 +8,7 @@ public class Jelly : MonoBehaviour {
     [SerializeField] Vector2 velocityVector;
     private bool isThrowable = true;
     private bool isPressed = false;
-    private float releaseTime = 0.15f;
-    private Vector2 velocityVec;
-
+    private const float releaseTime = 0.15f;
     /* Cached Variables */
     Rigidbody2D myRigidbody;
 
@@ -55,14 +53,6 @@ public class Jelly : MonoBehaviour {
             return isThrowable;
         } set {
             isThrowable = value;
-        }
-    }
-
-    public Vector2 VelocityVec {
-        get {
-            return velocityVec;
-        } set {
-            velocityVec = value;
         }
     }
 }
