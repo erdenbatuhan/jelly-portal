@@ -1,5 +1,4 @@
-
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +7,8 @@ public class Jelly : MonoBehaviour {
     /* Global Variables */
     [SerializeField] Vector2 velocityVector;
     private bool isThrowable = true;
-
+    private bool isPressed = false;
+    private const float releaseTime = 0.15f;
     /* Cached Variables */
     Rigidbody2D myRigidbody;
 
@@ -18,18 +18,32 @@ public class Jelly : MonoBehaviour {
     }
 
     private void Update() {
-        if (!isThrowable)
-            return;
-
-        if (Input.GetKeyDown(KeyCode.Space))
-            throwJelly();
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-            myRigidbody.velocity = velocityVector;
+        if (isThrowable && Input.GetKeyDown(KeyCode.Space))
+            throwJelly(velocityVector);
+        if (isPressed) {
+            myRigidbody.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
     }
 
-    private void throwJelly() {
+    private void OnMouseDown() {
+        isPressed = true;
+        myRigidbody.isKinematic = true;
+    }
+
+    private void OnMouseUp() {
+        isPressed = false;
+        myRigidbody.isKinematic = false;
+        StartCoroutine(Release());
+    }
+
+    private IEnumerator Release() {
+        yield return new WaitForSeconds(releaseTime);
+        GetComponent<SpringJoint2D>().enabled = false;
+    }
+
+    private void throwJelly(Vector2 vector) {
         myRigidbody.bodyType = RigidbodyType2D.Dynamic;
-        myRigidbody.velocity = velocityVector;  
+        myRigidbody.velocity = vector; 
 
         isThrowable = false;
     }
@@ -40,5 +54,5 @@ public class Jelly : MonoBehaviour {
         } set {
             isThrowable = value;
         }
-    } 
+    }
 }
