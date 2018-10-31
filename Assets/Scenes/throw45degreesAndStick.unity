@@ -267,7 +267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0859bf4e09328c4b88a9b7bda510de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityVector: {x: 0, y: 0}
 --- !u!212 &399143677
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -335,9 +334,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 399143673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f870dd78591d7842b44c2dd197b050b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6752698102135bc479a22dbf9bfa4bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocityVector: {x: 0, y: 0}
 --- !u!231 &399143680
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -416,7 +416,7 @@ SpriteRenderer:
   m_Size: {x: 38.34, y: 19.1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &439357634
