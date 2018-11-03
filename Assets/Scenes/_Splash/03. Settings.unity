@@ -1129,9 +1129,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114614767056462078, guid: d8dd52cce8458f944a5ead0867ee3296,
-          type: 2}
-        m_MethodName: LoadSplashScene
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1330,9 +1329,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114614767056462078, guid: d8dd52cce8458f944a5ead0867ee3296,
-          type: 2}
-        m_MethodName: LoadSplashScene
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
