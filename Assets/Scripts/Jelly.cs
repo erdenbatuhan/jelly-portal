@@ -8,43 +8,23 @@ public class Jelly : MonoBehaviour {
     [SerializeField] Vector2 velocityVector;
     private bool isThrowable = true;
     private bool isPressed = false;
-    private const float releaseTime = 0.15f;
     /* Cached Variables */
     Rigidbody2D myRigidbody;
+    Vector2 throwVector;
 
     private void Start() {
         myRigidbody = GetComponent<Rigidbody2D>();
-        myRigidbody.bodyType = RigidbodyType2D.Kinematic;
+        GetComponent<BoxCollider2D>().enabled = false;
+        myRigidbody.isKinematic = true;
     }
 
     private void Update() {
         if (isThrowable && Input.GetKeyDown(KeyCode.Space))
-            throwJelly(velocityVector);
-        if (isPressed) {
-            myRigidbody.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        }
+            throwJelly();
     }
 
-    private void OnMouseDown() {
-        isPressed = true;
-        myRigidbody.isKinematic = true;
-    }
-
-    private void OnMouseUp() {
-        isPressed = false;
-        myRigidbody.isKinematic = false;
-        StartCoroutine(Release());
-    }
-
-    private IEnumerator Release() {
-        yield return new WaitForSeconds(releaseTime);
-        GetComponent<SpringJoint2D>().enabled = false;
-    }
-
-    private void throwJelly(Vector2 vector) {
-        myRigidbody.bodyType = RigidbodyType2D.Dynamic;
-        myRigidbody.velocity = vector; 
-
+    private void throwJelly() {
+        myRigidbody.velocity = velocityVector; 
         isThrowable = false;
     }
 
