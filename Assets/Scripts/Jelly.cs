@@ -4,35 +4,27 @@ using UnityEngine;
 
 public class Jelly : MonoBehaviour {
 
-    /* Global Variables */
-    [SerializeField] Vector2 velocityVector;
-    private bool isThrowable = true;
-    private bool isPressed = false;
+    private bool isReleased = false;
     /* Cached Variables */
-    Rigidbody2D myRigidbody;
-    Vector2 throwVector;
+    Rigidbody2D rigidbody;
+    VirtualJelly virtualJelly;
 
     private void Start() {
-        myRigidbody = GetComponent<Rigidbody2D>();
+        rigidbody = GetComponent<Rigidbody2D>();
         GetComponent<BoxCollider2D>().enabled = false;
-        myRigidbody.isKinematic = true;
+        virtualJelly = FindObjectOfType<VirtualJelly>();
+        rigidbody.isKinematic = true;
     }
 
-    private void Update() {
-        if (isThrowable && Input.GetKeyDown(KeyCode.Space))
-            throwJelly();
+    public void throwJelly() {
+        rigidbody.velocity = virtualJelly.VelocityVector;
     }
 
-    private void throwJelly() {
-        myRigidbody.velocity = velocityVector; 
-        isThrowable = false;
-    }
-
-    public bool IsThrowable {
+    public bool IsReleased {
         get {
-            return isThrowable;
+            return isReleased;
         } set {
-            isThrowable = value;
+            isReleased = value;
         }
     }
 }

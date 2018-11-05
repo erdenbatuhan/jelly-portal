@@ -6,43 +6,49 @@ public class VirtualJelly : MonoBehaviour {
 
     /* Global Variables */
     [SerializeField] Jelly jelly;
-    private bool isPressed, whileHolding = false;
+    private bool isHeld = false;
+    private Vector2 velocityVector;
     private const float releaseTime = 0.05f;
     /* Cached Variables */
-    Rigidbody2D myRigidbody;
+    Rigidbody2D rigidbody;
 
     private void Start () {
-        myRigidbody = GetComponent<Rigidbody2D>();
+        rigidbody = GetComponent<Rigidbody2D>();
 
     }
 	
 	private void Update () {
-        if (isPressed) {
-            whileHolding = true;
-            GetComponent<SpriteRenderer>().enabled = false;
-            myRigidbody.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);        
-        } 
-        if (whileHolding) { 
-            jelly.GetComponent<Rigidbody2D>().velocity = myRigidbody.velocity;
-            GetComponent<BoxCollider2D>().enabled = true;
+        if (isHeld) {
+           GetComponent<SpriteRenderer>().enabled = false;
+           rigidbody.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
     }
 
     private void OnMouseDown() {
-        isPressed = true;
-        myRigidbody.isKinematic = true;
+        isHeld = true;
+        rigidbody.isKinematic = true;
     }
 
     private void OnMouseUp() {
-        isPressed = false;
-        myRigidbody.isKinematic = false;
+        isHeld = false;
+        rigidbody.isKinematic = false;
         StartCoroutine(Release());
     }
 
     private IEnumerator Release() {
         yield return new WaitForSeconds(releaseTime);
-        GetComponent<SpringJoint2D>().enabled = false;
         jelly.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        GetComponent<SpringJoint2D>().enabled = false;
+        velocityVector = rigidbody.velocity;
+        jelly.throwJelly();
         Destroy(gameObject);
+    }
+
+    public Vector2 VelocityVector {
+        get {
+            return velocityVector;
+        } set {
+            velocityVector = value;
+        }
     }
 }

@@ -265,7 +265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6752698102135bc479a22dbf9bfa4bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityVector: {x: 10, y: 10}
 --- !u!212 &399143677
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -945,7 +944,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2129112503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 500c357cff597964b81579951abc66a6, type: 3}
+  m_Script: {fileID: 11500000, guid: a4e623af03af3d343a6ca914adbfc81b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   jelly: {fileID: 399143676}
