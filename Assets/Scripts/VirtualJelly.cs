@@ -37,11 +37,11 @@ public class VirtualJelly : MonoBehaviour {
 
     private IEnumerator Release() {
         yield return new WaitForSeconds(releaseTime);
-        jelly.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         GetComponent<SpringJoint2D>().enabled = false;
+        jelly.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         velocityVector = rigidbody.velocity;
-        jelly.throwJelly();
         Destroy(gameObject);
+        jelly.throwJelly();
     }
 
     public Vector2 VelocityVector {

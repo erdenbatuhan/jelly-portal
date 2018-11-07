@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Jelly : MonoBehaviour {
 
-    private bool isReleased = false;
     /* Cached Variables */
     Rigidbody2D rigidbody;
     VirtualJelly virtualJelly;
@@ -18,13 +17,11 @@ public class Jelly : MonoBehaviour {
 
     public void throwJelly() {
         rigidbody.velocity = virtualJelly.VelocityVector;
+        StartCoroutine("enableBoxCollider");
     }
-
-    public bool IsReleased {
-        get {
-            return isReleased;
-        } set {
-            isReleased = value;
-        }
+    
+    private IEnumerator enableBoxCollider() {
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<BoxCollider2D>().enabled = true;
     }
 }
