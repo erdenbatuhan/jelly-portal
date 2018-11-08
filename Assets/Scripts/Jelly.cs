@@ -4,55 +4,24 @@ using UnityEngine;
 
 public class Jelly : MonoBehaviour {
 
-    /* Global Variables */
-    [SerializeField] Vector2 velocityVector;
-    private bool isThrowable = true;
-    private bool isPressed = false;
-    private const float releaseTime = 0.15f;
     /* Cached Variables */
-    Rigidbody2D myRigidbody;
+    Rigidbody2D rigidbody;
+    VirtualJelly virtualJelly;
 
     private void Start() {
-        myRigidbody = GetComponent<Rigidbody2D>();
-        myRigidbody.bodyType = RigidbodyType2D.Kinematic;
+        rigidbody = GetComponent<Rigidbody2D>();
+        GetComponent<BoxCollider2D>().enabled = false;
+        virtualJelly = FindObjectOfType<VirtualJelly>();
+        rigidbody.isKinematic = true;
     }
 
-    private void Update() {
-        if (isThrowable && Input.GetKeyDown(KeyCode.Space))
-            throwJelly(velocityVector);
-        if (isPressed) {
-            myRigidbody.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        }
+    public void throwJelly() {
+        rigidbody.velocity = virtualJelly.VelocityVector;
+        StartCoroutine("enableBoxCollider");
     }
-
-    private void OnMouseDown() {
-        isPressed = true;
-        myRigidbody.isKinematic = true;
-    }
-
-    private void OnMouseUp() {
-        isPressed = false;
-        myRigidbody.isKinematic = false;
-        StartCoroutine(Release());
-    }
-
-    private IEnumerator Release() {
-        yield return new WaitForSeconds(releaseTime);
-        GetComponent<SpringJoint2D>().enabled = false;
-    }
-
-    private void throwJelly(Vector2 vector) {
-        myRigidbody.bodyType = RigidbodyType2D.Dynamic;
-        myRigidbody.velocity = vector; 
-
-        isThrowable = false;
-    }
-
-    public bool IsThrowable {
-        get {
-            return isThrowable;
-        } set {
-            isThrowable = value;
-        }
+    
+    private IEnumerator enableBoxCollider() {
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<BoxCollider2D>().enabled = true;
     }
 }
