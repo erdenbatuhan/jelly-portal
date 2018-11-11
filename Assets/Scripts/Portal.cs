@@ -5,27 +5,39 @@ using Extensions;
 
 public class Portal : MonoBehaviour {
     [SerializeField] Jelly jelly;
-    [SerializeField] Portal destination;
+    [SerializeField] Portal to;
     Transform jellyTransform;
-    Transform destinationTransform;
+    Transform toTransform;
     Rigidbody2D jellyRigidbody;
+    [SerializeField] private bool isActive;
 
-    public void Start() { 
+    public void Start() {
+        isActive = false; 
         jellyTransform = jelly.GetComponent<Transform>();
-        destinationTransform = destination.GetComponent<Transform>();
+        toTransform = to.GetComponent<Transform>();
         jellyRigidbody = jelly.GetComponent<Rigidbody2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.GetComponent<Jelly>() != null)
+        if (collider.GetComponent<Jelly>() != null && isActive)
         {
             Vector2 enteringVelocity = jellyRigidbody.velocity;
 
-            jellyTransform.position = destinationTransform.position;   // teleport the jelly
-            float beta = transform.eulerAngles.z + destination.transform.eulerAngles.z;     // rotate the velocity vector beta degrees
+            jellyTransform.position = toTransform.position;   // teleport the jelly
+            float beta = transform.eulerAngles.z + to.transform.eulerAngles.z;     // rotate the velocity vector beta degrees
 
             jelly.GetComponent<Rigidbody2D>().velocity = Vector2Extension.Rotate(enteringVelocity, beta);
         }
     }
+
+    public bool IsActive
+    {
+        get {
+            return isActive;
+        } set {
+            isActive = value;
+        }
+    }
+
 }

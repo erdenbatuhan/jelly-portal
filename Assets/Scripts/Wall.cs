@@ -10,7 +10,6 @@ public class Wall : MonoBehaviour {
 
         if (jelly != null) {
             collider.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            jelly.IsThrowable = true;
         }
     } 
 }
