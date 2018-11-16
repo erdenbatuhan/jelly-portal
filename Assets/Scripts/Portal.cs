@@ -23,7 +23,6 @@ public class Portal : MonoBehaviour {
         if (collider.GetComponent<Jelly>() != null && isActive)
         {
             Vector2 enteringVelocity = jellyRigidbody.velocity;
-
             jellyTransform.position = toTransform.position;   // teleport the jelly
             float beta = transform.eulerAngles.z + to.transform.eulerAngles.z;     // rotate the velocity vector beta degrees
 
