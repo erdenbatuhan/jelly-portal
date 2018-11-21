@@ -14,7 +14,6 @@ public class VirtualJelly : MonoBehaviour {
 
     private void Start () {
         rigidbody = GetComponent<Rigidbody2D>();
-
     }
 	
 	private void Update () {
