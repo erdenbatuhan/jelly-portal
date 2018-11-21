@@ -7,7 +7,7 @@ public class Jelly : MonoBehaviour {
     /* Cached Variables */
     Rigidbody2D rigidbody;
     VirtualJelly virtualJelly;
-    [SerializeField] private int lives;
+    private int lives;
 
     private void Start() {
         lives = 1;

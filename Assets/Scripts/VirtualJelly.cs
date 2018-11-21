@@ -9,13 +9,13 @@ public class VirtualJelly : MonoBehaviour {
     private bool isHeld = false;
     private Vector2 velocityVector;
     private const float releaseTime = 0.05f;
-    public bool gameHasStarted;
+    public GameController gameController;
     /* Cached Variables */
     Rigidbody2D rigidbody;
 
     private void Start () {
         rigidbody = GetComponent<Rigidbody2D>();
-        gameHasStarted = false;
+        gameController = FindObjectOfType<GameController>();
     }
 	
 	private void Update () {
@@ -43,7 +43,7 @@ public class VirtualJelly : MonoBehaviour {
         velocityVector = rigidbody.velocity;
         Destroy(gameObject);
         jelly.throwJelly();
-        gameHasStarted = true;
+        gameController.GameHasStarted = true;
     }
 
     public Vector2 VelocityVector {

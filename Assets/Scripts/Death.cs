@@ -7,17 +7,22 @@ public class Death : MonoBehaviour
     [SerializeField] private int lives;
     [SerializeField] Jelly jelly;
     [SerializeField] TextMeshProUGUI deathWriting;
+    [SerializeField] GameController gameController;
+
+    private void Start() {
+        lives = jelly.Lives;
+    }
 
     public void LoseLife()
     {
-        Debug.Log("losing lives");
-        lives--;
-        Debug.Log(lives);
+        if (gameController.GameHasStarted) {
+            lives--;
 
-        if (lives <= 0)
-        {
-            deathWriting.text = "You are dead!";
-            Destroy(jelly.gameObject);
+            if (lives <= 0) {
+                deathWriting.text = "You are dead!";
+                Destroy(jelly.gameObject);
+                gameController.GameHasStarted = false;
+            }
         }
     }
 }
