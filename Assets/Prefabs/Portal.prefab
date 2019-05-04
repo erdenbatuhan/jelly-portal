@@ -38,8 +38,8 @@ GameObject:
   - component: {fileID: 4231440385712978}
   - component: {fileID: 33936127101710856}
   - component: {fileID: 23189252859371190}
-  - component: {fileID: 136718791817588146}
   - component: {fileID: 114143452403998452}
+  - component: {fileID: 70351480533713622}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1796146072206080}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.9, y: 5.3, z: 0.4065092}
+  m_LocalPosition: {x: -0.07770443, y: 3.058011, z: 0.4065092}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4984815411705604}
@@ -116,6 +116,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1796146072206080}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!70 &70351480533713622
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1796146072206080}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.00065529346, y: -0.0052927732}
+  m_Size: {x: 0.6017277, y: 1.6088936}
+  m_Direction: 0
 --- !u!70 &70853095371337282
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -128,8 +143,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00000023841858, y: -0.007479191}
-  m_Size: {x: 1.1283088, y: 2.2117395}
+  m_Offset: {x: 0.0008261204, y: -0.008304238}
+  m_Size: {x: 0.6479211, y: 1.6443489}
   m_Direction: 0
 --- !u!114 &114143452403998452
 MonoBehaviour:
@@ -144,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jelly: {fileID: 0}
   to: {fileID: 0}
+  isActive: 0
 --- !u!114 &114996978665491164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,16 +171,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a82c201c30d6c42ae5967329f8771e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &136718791817588146
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1796146072206080}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}

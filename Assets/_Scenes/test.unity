@@ -611,6 +611,47 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 858957202}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &859432331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 859432332}
+  - component: {fileID: 859432333}
+  m_Layer: 0
+  m_Name: Virtual Jelly
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &859432332
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 859432331}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1661829978}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &859432333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 859432331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20ba7ca485e20741a54a3f0421ee42a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jelly: {fileID: 1661829976}
 --- !u!1 &1085614821
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,11 +810,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4066761950796406, guid: ce1468242075dc1468a316f3ab6d9f1d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.68
+      value: -7.8
       objectReference: {fileID: 0}
     - target: {fileID: 4066761950796406, guid: ce1468242075dc1468a316f3ab6d9f1d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.03
+      value: -2.4
       objectReference: {fileID: 0}
     - target: {fileID: 4066761950796406, guid: ce1468242075dc1468a316f3ab6d9f1d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -874,6 +915,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1356658861}
   m_Script: {fileID: 11500000, guid: 6752698102135bc479a22dbf9bfa4bee, type: 3}
+--- !u!4 &1661829978 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4066761950796406, guid: ce1468242075dc1468a316f3ab6d9f1d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1356658861}
 --- !u!61 &1661829979
 BoxCollider2D:
   m_ObjectHideFlags: 0
