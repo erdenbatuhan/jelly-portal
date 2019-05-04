@@ -482,17 +482,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &399143679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 399143673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6752698102135bc479a22dbf9bfa4bee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier:
 --- !u!1 &439357632
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,50 +822,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1191544588
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1191544590}
-  - component: {fileID: 1191544589}
-  m_Layer: 0
-  m_Name: Death Controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1191544589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1191544588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c60307d07135ba74fbabff19fa20cbbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lives: 0
-  jelly: {fileID: 399143676}
-  deathWriting: {fileID: 301913994}
-  gameController: {fileID: 722420335}
---- !u!4 &1191544590
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1191544588}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1513211231
 GameObject:
@@ -1530,8 +1475,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2129112508}
   - component: {fileID: 2129112507}
-  - component: {fileID: 2129112506}
   - component: {fileID: 2129112505}
+  - component: {fileID: 2129112506}
   - component: {fileID: 2129112504}
   - component: {fileID: 2129112509}
   - component: {fileID: 2129112510}
@@ -1677,16 +1622,4 @@ SpringJoint2D:
   m_AutoConfigureDistance: 1
   m_Distance: 0.005
   m_DampingRatio: 0
-  m_Frequency: 1.4
---- !u!114 &2129112510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2129112503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e20ba7ca485e20741a54a3f0421ee42a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jelly: {fileID: 399143676}
+  m_Frequency: 1
