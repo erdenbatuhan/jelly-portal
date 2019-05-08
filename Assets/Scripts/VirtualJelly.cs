@@ -1,53 +1,58 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class VirtualJelly : MonoBehaviour {
 
-    /* Global Variables */
-    [SerializeField] Jelly jelly;
-    private bool isHeld = false;
-    private Vector2 velocityVector;
-    private const float releaseTime = 0.05f;
-    /* Cached Variables */
-    Rigidbody2D rigidbody;
+    /* ----- Class Constants ----- */
 
-    private void Start () {
-        rigidbody = GetComponent<Rigidbody2D>();
+    /* ----- Cached Variables (Components) ----- */
+    BoxCollider2D boxColliderComponent;
+    Rigidbody2D rigidbodyComponent;
+    SpringJoint2D springJointComponent;
+    SpriteRenderer spriteRendererComponent;
+
+    /* ----- Editor Variables ----- */
+    [SerializeField] float releaseTime = 0.05f;
+    [SerializeField] Jelly jelly;
+
+    /* ----- Class Variables ----- */
+    bool beingPulled;
+    Vector2 springForce;
+
+    void Start() {
+        boxColliderComponent = GetComponent<BoxCollider2D>();
+        rigidbodyComponent = GetComponent<Rigidbody2D>();
+        springJointComponent = GetComponent<SpringJoint2D>();
+        spriteRendererComponent = GetComponent<SpriteRenderer>();
+
+        beingPulled = false;
     }
 	
-	private void Update () {
-        if (isHeld) {
-           GetComponent<SpriteRenderer>().enabled = false;
-           rigidbody.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+	void Update() {
+        if (beingPulled) {
+            rigidbodyComponent.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
     }
 
-    private void OnMouseDown() {
-        isHeld = true;
-        rigidbody.isKinematic = true;
+    void OnMouseDown() {
+        beingPulled = true;
+        rigidbodyComponent.isKinematic = true;
     }
 
-    private void OnMouseUp() {
-        isHeld = false;
-        rigidbody.isKinematic = false;
+    void OnMouseUp() {
+        beingPulled = false;
+        rigidbodyComponent.isKinematic = false;
+
         StartCoroutine(Release());
     }
 
-    private IEnumerator Release() {
+    IEnumerator Release() {
         yield return new WaitForSeconds(releaseTime);
-        GetComponent<SpringJoint2D>().enabled = false;
-        jelly.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        velocityVector = rigidbody.velocity;
-        Destroy(gameObject);
-        jelly.throwJelly();
-    }
 
-    public Vector2 VelocityVector {
-        get {
-            return velocityVector;
-        } set {
-            velocityVector = value;
-        }
+        boxColliderComponent.enabled = false;
+        springJointComponent.enabled = false;
+        spriteRendererComponent.enabled = false;
+
+        StartCoroutine(jelly.ThrowJelly(rigidbodyComponent.velocity));
     }
 }

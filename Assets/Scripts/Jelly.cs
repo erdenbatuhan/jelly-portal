@@ -1,41 +1,62 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Jelly : MonoBehaviour {
 
-    /* Cached Variables */
-    Rigidbody2D rigidbody;
-    VirtualJelly virtualJelly;
-    private int lives;
+    /* ----- Class Constants ----- */
 
-    private void Start() {
-        lives = 1;
-        rigidbody = GetComponent<Rigidbody2D>();
-        GetComponent<BoxCollider2D>().enabled = false;
-        virtualJelly = FindObjectOfType<VirtualJelly>();
-        rigidbody.isKinematic = true;
+    /* ----- Cached Variables (Components) ----- */
+    BoxCollider2D boxColliderComponent;
+    Rigidbody2D rigidbodyComponent;
+
+    /* ----- Editor Variables ----- */
+    [SerializeField] LevelManager levelManager;
+    [SerializeField] float initialHealth;
+
+    /* ----- Class Variables ----- */
+    float currentHealth;
+
+    void Start() {
+        boxColliderComponent = GetComponent<BoxCollider2D>();
+        rigidbodyComponent = GetComponent<Rigidbody2D>();
+
+        boxColliderComponent.enabled = false;
+        rigidbodyComponent.isKinematic = true;
+
+        currentHealth = initialHealth;
     }
 
-    public void throwJelly() {
-        rigidbody.velocity = virtualJelly.VelocityVector;
-        StartCoroutine("enableBoxCollider");
-    }
-    
-    private IEnumerator enableBoxCollider() {
-        yield return new WaitForSeconds(0.1f);
-        GetComponent<BoxCollider2D>().enabled = true;
+    public IEnumerator ThrowJelly(Vector2 springForce) {
+        boxColliderComponent.enabled = true;
+
+        rigidbodyComponent.isKinematic = false;
+        rigidbodyComponent.velocity = springForce;
+
+        yield return null;
     }
 
-    public int Lives
-    {
-        get
-        {
-            return lives;
+    public void GetHit(float damage) {
+        currentHealth -= damage;
+
+        if (--currentHealth <= 0) {
+            EditorUtility.DisplayDialog("=(", "Sorry but you're dead..", "Try again!");
+
+            Destroy(gameObject);
+            levelManager.LoadNextScene();
         }
-        set
-        {
-            lives = value;
-        }
+    }
+
+    /* ----- Getters & Setters ----- */
+    public Rigidbody2D GetRigidbodyComponent() {
+        return rigidbodyComponent;
+    }
+
+    public float GetCurrentHealth() {
+        return currentHealth;
+    }
+
+    public void SetCurrentHealth(float currentHealth) {
+        this.currentHealth = currentHealth;
     }
 }

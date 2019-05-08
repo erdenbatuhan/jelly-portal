@@ -1,19 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
-    private int currentSceneIndex;
+    /* ----- Class Constants ----- */
 
-	private void Start () {
+    /* ----- Cached Variables (Components) ----- */
 
+    /* ----- Editor Variables ----- */
+
+    /* ----- Class Variables ----- */
+    int currentSceneIndex;
+
+	void Start() {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
 	}
 
-    public void LoadSplashScene() {
+    public void LoadStartScene() {
         SceneManager.LoadScene("01. Start");
     }
 
@@ -26,7 +29,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void LoadNextScene() {
-        SceneManager.LoadScene(currentSceneIndex + 1);
+        SceneManager.LoadScene(currentSceneIndex + 1 % SceneManager.sceneCount);
     }
 
     public void ExitTheGame() {
