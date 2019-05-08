@@ -48,10 +48,6 @@ public class Jelly : MonoBehaviour {
     }
 
     /* ----- Getters & Setters ----- */
-    public Rigidbody2D GetRigidbodyComponent() {
-        return rigidbodyComponent;
-    }
-
     public float GetCurrentHealth() {
         return currentHealth;
     }
