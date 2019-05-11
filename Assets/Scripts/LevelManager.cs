@@ -35,4 +35,6 @@ public class LevelManager : MonoBehaviour {
     public void ExitTheGame() {
         Application.Quit();
     }
+
+    /* ----- Getters & Setters ----- */
 }
