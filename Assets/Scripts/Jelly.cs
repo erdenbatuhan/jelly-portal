@@ -9,6 +9,7 @@ public class Jelly : MonoBehaviour {
     /* ----- Cached Variables (Components) ----- */
     BoxCollider2D boxColliderComponent;
     Rigidbody2D rigidbodyComponent;
+    Transform transformComponent;
 
     /* ----- Editor Variables ----- */
     [SerializeField] LevelManager levelManager;
@@ -20,6 +21,7 @@ public class Jelly : MonoBehaviour {
     void Start() {
         boxColliderComponent = GetComponent<BoxCollider2D>();
         rigidbodyComponent = GetComponent<Rigidbody2D>();
+        transformComponent = GetComponent<Transform>();
 
         boxColliderComponent.enabled = false;
         rigidbodyComponent.isKinematic = true;
@@ -48,6 +50,22 @@ public class Jelly : MonoBehaviour {
     }
 
     /* ----- Getters & Setters ----- */
+    public Vector2 GetVelocity() {
+        return rigidbodyComponent.velocity;
+    }
+
+    public void SetVelocity(Vector2 velocity) {
+        rigidbodyComponent.velocity = velocity;
+    }
+
+    public Vector2 GetPosition() {
+        return transformComponent.position;
+    }
+
+    public void SetPosition(Vector2 position) {
+        transformComponent.position = position;
+    }
+
     public float GetCurrentHealth() {
         return currentHealth;
     }

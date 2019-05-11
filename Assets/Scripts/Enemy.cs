@@ -18,4 +18,6 @@ public class Enemy : MonoBehaviour {
             jelly.GetHit(damage);
         }
     }
+
+    /* ----- Getters & Setters ----- */
 }

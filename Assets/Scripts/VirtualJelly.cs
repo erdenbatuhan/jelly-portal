@@ -55,4 +55,6 @@ public class VirtualJelly : MonoBehaviour {
 
         StartCoroutine(jelly.ThrowJelly(rigidbodyComponent.velocity));
     }
+
+    /* ----- Getters & Setters ----- */
 }
