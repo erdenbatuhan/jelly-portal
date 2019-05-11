@@ -12,7 +12,7 @@ public class Jelly : MonoBehaviour {
     Transform transformComponent;
 
     /* ----- Editor Variables ----- */
-    [SerializeField] LevelManager levelManager;
+    [SerializeField] LevelController levelController;
     [SerializeField] float initialHealth;
 
     /* ----- Class Variables ----- */
@@ -45,7 +45,7 @@ public class Jelly : MonoBehaviour {
             EditorUtility.DisplayDialog("=(", "Sorry but you're dead..", "Try again!");
 
             Destroy(gameObject);
-            levelManager.LoadNextScene();
+            levelController.LoadNextScene();
         }
     }
 

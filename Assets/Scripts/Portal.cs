@@ -9,30 +9,33 @@ public class Portal : MonoBehaviour {
     Transform nextTransform;
 
     /* ----- Editor Variables ----- */
-    [SerializeField] Jelly jelly;
     [SerializeField] Portal next;
     [SerializeField] bool portalActivated = false;
 
     /* ----- Class Variables ----- */
 
     void Start() {
-        nextTransform = next.GetComponent<Transform>();
+        nextTransform = next != null ? next.GetComponent<Transform>() : null;
     }
 
     void OnTriggerEnter2D(Collider2D collidingObject) {
-        bool jellyCollided = collidingObject.GetComponent<Jelly>() != null;
+        Jelly jellyColliding = collidingObject.GetComponent<Jelly>();
 
-        if (jellyCollided && portalActivated) {
-            HandleTeleportation();
+        if (portalActivated && jellyColliding != null) {
+            HandleTeleportation(jellyColliding);
         }
     }
 
-    void HandleTeleportation() {
-        Vector2 enteringVelocity = jelly.GetVelocity();
+    void HandleTeleportation(Jelly jellyColliding) {
+        if (nextTransform == null) {
+            return;
+        }
+
+        Vector2 enteringVelocity = jellyColliding.GetVelocity();
         float rotationDegree = transform.eulerAngles.z + nextTransform.eulerAngles.z;
         
-        jelly.SetPosition(nextTransform.position);
-        jelly.SetVelocity(Vector2Extension.Rotate(enteringVelocity, rotationDegree));
+        jellyColliding.SetPosition(nextTransform.position);
+        jellyColliding.SetVelocity(Vector2Extension.Rotate(enteringVelocity, rotationDegree));
     }
 
     /* ----- Getters & Setters ----- */
