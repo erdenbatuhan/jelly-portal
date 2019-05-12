@@ -2,19 +2,19 @@
 
 public class PauseMenu : MonoBehaviour {
 
-    /* ----- Class Constants ----- */
+	/* ----- Class Constants ----- */
 
-    /* ----- Cached Variables (Components) ----- */
+	/* ----- Cached Variables (Components) ----- */
 
-    /* ----- Editor Variables ----- */
+	/* ----- Editor Variables ----- */
 
-    /* ----- Class Variables ----- */
+	/* ----- Class Variables ----- */
 	bool gamePaused = false;
 	GameObject pauseMenuUI;
 
-    void Start() {
-        gamePaused = false;
-    }
+	void Start() {
+		gamePaused = false;
+	}
 
 	void Awake() {
 		pauseMenuUI.SetActive(false);
@@ -32,7 +32,7 @@ public class PauseMenu : MonoBehaviour {
 	}
 
 	public void Resume() {
-        Time.timeScale = 1f;
+		Time.timeScale = 1f;
 		gamePaused = false;
 
 		ClosePauseMenu();
@@ -42,5 +42,5 @@ public class PauseMenu : MonoBehaviour {
 		pauseMenuUI.SetActive(false);
 	}
 
-    /* ----- Getters & Setters ----- */
+	/* ----- Getters & Setters ----- */
 }

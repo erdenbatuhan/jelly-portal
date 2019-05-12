@@ -3,38 +3,38 @@ using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour {
 
-    /* ----- Class Constants ----- */
+	/* ----- Class Constants ----- */
 
-    /* ----- Cached Variables (Components) ----- */
+	/* ----- Cached Variables (Components) ----- */
 
-    /* ----- Editor Variables ----- */
+	/* ----- Editor Variables ----- */
 
-    /* ----- Class Variables ----- */
-    int currentSceneIndex;
+	/* ----- Class Variables ----- */
+	int currentSceneIndex;
 
 	void Start() {
-        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+		currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 	}
 
-    public void LoadStartScene() {
-        SceneManager.LoadScene("01. Start");
-    }
+	public void LoadStartScene() {
+		SceneManager.LoadScene("01. Start");
+	}
 
-    public void LoadLevelsScene() {
-        SceneManager.LoadScene("02. Levels");
-    }
-    
-    public void LoadSettingsScene() {
-        SceneManager.LoadScene("03. Settings");
-    }
+	public void LoadLevelsScene() {
+		SceneManager.LoadScene("02. Levels");
+	}
 
-    public void LoadNextScene() {
-        SceneManager.LoadScene(currentSceneIndex + 1 % SceneManager.sceneCount);
-    }
+	public void LoadSettingsScene() {
+		SceneManager.LoadScene("03. Settings");
+	}
 
-    public void ExitTheGame() {
-        Application.Quit();
-    }
+	public void LoadNextScene() {
+		SceneManager.LoadScene(currentSceneIndex + 1 % SceneManager.sceneCount);
+	}
 
-    /* ----- Getters & Setters ----- */
+	public void ExitTheGame() {
+		Application.Quit();
+	}
+
+	/* ----- Getters & Setters ----- */
 }

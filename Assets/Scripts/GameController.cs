@@ -2,25 +2,25 @@
 
 public class GameController : MonoBehaviour {
 
-    /* ----- Class Constants ----- */
+	/* ----- Class Constants ----- */
 
-    /* ----- Cached Variables (Components) ----- */
+	/* ----- Cached Variables (Components) ----- */
 
-    /* ----- Editor Variables ----- */
+	/* ----- Editor Variables ----- */
 
-    /* ----- Class Variables ----- */
-    bool gameStarted;
+	/* ----- Class Variables ----- */
+	bool gameStarted;
 
-    void Start() {
-        gameStarted = false;
-    }
+	void Start() {
+		gameStarted = false;
+	}
 
-    /* ----- Getters & Setters ----- */
-    public bool IsGameStarted() {
-        return gameStarted;
-    }
+	/* ----- Getters & Setters ----- */
+	public bool IsGameStarted() {
+		return gameStarted;
+	}
 
-    public void SetGameStarted(bool gameStarted) {
-        this.gameStarted = gameStarted;
-    }
+	public void SetGameStarted(bool gameStarted) {
+		this.gameStarted = gameStarted;
+	}
 }
