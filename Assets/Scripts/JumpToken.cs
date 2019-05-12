@@ -7,22 +7,25 @@ public class JumpToken : MonoBehaviour {
     /* ----- Cached Variables (Components) ----- */
 
     /* ----- Editor Variables ----- */
-    [SerializeField] float jumpingMagnitudeInX = 3;
-    [SerializeField] float jumpingMagnitudeInY = 6;
+    [SerializeField] float jumpingMagnitudeInX = 1.5f;
+    [SerializeField] float jumpingMagnitudeInY = 3.0f;
 
     /* ----- Class Variables ----- */
-    Vector2 jumpingVelocity;
-
-    void Start() {
-        jumpingVelocity = new Vector2(jumpingMagnitudeInX, jumpingMagnitudeInY);
-    }
 
 	void OnTriggerEnter2D(Collider2D collidingObject) {
         Jelly jellyColliding = collidingObject.GetComponent<Jelly>();
 
         if (jellyColliding != null) {
-            jellyColliding.SetVelocity(jumpingVelocity);
+            PushJelly(jellyColliding);
         }
+    }
+
+    void PushJelly(Jelly jellyColliding) {
+        float x = jellyColliding.GetVelocity().x + jumpingMagnitudeInX;
+        float y = jellyColliding.GetVelocity().y + jumpingMagnitudeInY;
+
+        Vector2 jumpingVelocity = new Vector2(x, y);
+        jellyColliding.SetVelocity(jumpingVelocity);
     }
 
     /* ----- Getters & Setters ----- */
