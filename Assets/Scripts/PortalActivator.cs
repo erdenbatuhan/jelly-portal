@@ -5,22 +5,22 @@ public class PortalActivator : MonoBehaviour {
 	/* ----- Class Constants ----- */
 
 	/* ----- Cached Variables (Components) ----- */
-	Portal parent;
+	Portal connectedPortal;
 
 	/* ----- Editor Variables ----- */
 
 	/* ----- Class Variables ----- */
 
 	void Start() {
-		parent = GetComponentInParent<Portal>();
+		connectedPortal = GetComponentInParent<Portal>();
 	}
 
 	void OnTriggerEnter2D(Collider2D collidingObject) {
-		parent.SetPortalActivated(true);
+		connectedPortal.SetPortalActivated(true);
 	}
 
 	void OnTriggerExit2D(Collider2D collidingObject) {
-		parent.SetPortalActivated(true);
+		connectedPortal.SetPortalActivated(false);
 	}
 
 	/* ----- Getters & Setters ----- */
