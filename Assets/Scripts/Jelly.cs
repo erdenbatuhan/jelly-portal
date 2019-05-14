@@ -41,7 +41,7 @@ public class Jelly : MonoBehaviour {
 	public void GetHit(float damage) {
 		currentHealth -= damage;
 
-		if (--currentHealth <= 0) {
+		if (currentHealth <= 0) {
 			EditorUtility.DisplayDialog("=(", "Sorry but you're dead..", "Try again!");
 
 			Destroy(gameObject);
