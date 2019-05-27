@@ -16,10 +16,13 @@ public class PortalActivator : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collidingObject) {
-		connectedPortal.SetPortalActivated(true);
+		if (!connectedPortal.IsBeingTeleportedTo()) {
+			connectedPortal.SetPortalActivated(true);
+		}
 	}
 
 	void OnTriggerExit2D(Collider2D collidingObject) {
+		connectedPortal.SetBeingTeleportedTo(false);
 		connectedPortal.SetPortalActivated(false);
 	}
 

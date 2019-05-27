@@ -9,6 +9,7 @@ public class Jelly : MonoBehaviour {
 	/* ----- Cached Variables (Components) ----- */
 	BoxCollider2D boxColliderComponent;
 	Rigidbody2D rigidbodyComponent;
+	SpriteRenderer spriteRendererComponent;
 	Transform transformComponent;
 
 	/* ----- Editor Variables ----- */
@@ -21,6 +22,7 @@ public class Jelly : MonoBehaviour {
 	void Start() {
 		boxColliderComponent = GetComponent<BoxCollider2D>();
 		rigidbodyComponent = GetComponent<Rigidbody2D>();
+		spriteRendererComponent = GetComponent<SpriteRenderer>();
 		transformComponent = GetComponent<Transform>();
 
 		boxColliderComponent.enabled = false;
@@ -49,6 +51,21 @@ public class Jelly : MonoBehaviour {
 		}
 	}
 
+	public void GetDisappeared() {
+		spriteRendererComponent.enabled = false;
+
+		rigidbodyComponent.isKinematic = true;
+		rigidbodyComponent.velocity = Vector2.zero;
+	}
+
+	public void GetThrownWhileNotMoving(Vector2 nextPosition, Vector2 throwingVelocity) {
+		spriteRendererComponent.enabled = true;
+		transformComponent.position = nextPosition;
+
+		rigidbodyComponent.isKinematic = false;
+		rigidbodyComponent.velocity = throwingVelocity;
+	}
+
 	/* ----- Getters & Setters ----- */
 	public Vector2 GetVelocity() {
 		return rigidbodyComponent.velocity;
@@ -72,5 +89,9 @@ public class Jelly : MonoBehaviour {
 
 	public void SetCurrentHealth(float currentHealth) {
 		this.currentHealth = currentHealth;
+	}
+
+	public void SetKinematic(bool isKinematic) {
+		rigidbodyComponent.isKinematic = isKinematic;
 	}
 }

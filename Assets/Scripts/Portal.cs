@@ -1,18 +1,21 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using Extensions;
 
 public class Portal : MonoBehaviour {
 
 	/* ----- Class Constants ----- */
+	const float TELEPORTATION_DELAY = .25f;
 
 	/* ----- Cached Variables (Components) ----- */
 	Transform nextTransform;
 
 	/* ----- Editor Variables ----- */
 	[SerializeField] Portal next;
-	[SerializeField] bool portalActivated = false;
 
 	/* ----- Class Variables ----- */
+	bool portalActivated = false;
+	bool beingTeleportedTo = false;
 
 	void Start() {
 		nextTransform = next != null ? next.GetComponent<Transform>() : null;
@@ -22,20 +25,26 @@ public class Portal : MonoBehaviour {
 		Jelly jellyColliding = collidingObject.GetComponent<Jelly>();
 
 		if (portalActivated && jellyColliding != null) {
-			HandleTeleportation(jellyColliding);
+			StartCoroutine(HandleTeleportation(jellyColliding));
 		}
 	}
 
-	void HandleTeleportation(Jelly jellyColliding) {
+	IEnumerator HandleTeleportation(Jelly jellyColliding) {
 		if (nextTransform == null) {
-			return;
+			yield return null;
 		}
+
+		beingTeleportedTo = false;
+		next.SetBeingTeleportedTo(true);
 
 		Vector2 enteringVelocity = jellyColliding.GetVelocity();
 		float rotationDegree = transform.eulerAngles.z + nextTransform.eulerAngles.z;
 
-		jellyColliding.SetPosition(nextTransform.position);
-		jellyColliding.SetVelocity(Vector2Extension.Rotate(enteringVelocity, rotationDegree));
+		jellyColliding.GetDisappeared();
+
+		yield return new WaitForSeconds(TELEPORTATION_DELAY);
+
+		jellyColliding.GetThrownWhileNotMoving(nextTransform.position, Vector2Extension.Rotate(enteringVelocity, rotationDegree));
 	}
 
 	/* ----- Getters & Setters ----- */
@@ -45,5 +54,13 @@ public class Portal : MonoBehaviour {
 
 	public void SetPortalActivated(bool portalActivated) {
 		this.portalActivated = portalActivated;
+	}
+
+	public bool IsBeingTeleportedTo() {
+		return beingTeleportedTo;
+	}
+
+	public void SetBeingTeleportedTo(bool beingTeleportedTo) {
+		this.beingTeleportedTo = beingTeleportedTo;
 	}
 }
